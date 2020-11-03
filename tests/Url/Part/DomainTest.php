@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otis22\VetmanagerApi\Url\Part;
+namespace Otis22\VetmanagerUrl\Url\Part;
 
 use PHPUnit\Framework\TestCase;
 

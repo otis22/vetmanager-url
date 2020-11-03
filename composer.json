@@ -9,7 +9,9 @@
         }
     ],
     "require": {
-        "otis/php-interfaces": "^0.1"
+        "otis/php-interfaces": "^0.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1",
@@ -23,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "Otis22\\VetmanagerUrl\\": "src"
-        }
+        },
+        "files": [
+            "src/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -31,7 +36,7 @@
         }
     },
     "scripts": {
-        "unit": "vendor/bin/phpunit && vendor/bin/php-coverage-checker build/logs/clover.xml 100",
+        "unit": "vendor/bin/phpunit && vendor/bin/php-coverage-checker build/logs/clover.xml 85",
         "check-static-analyze": "vendor/bin/phpstan analyse --level=max src tests",
         "check-style": "vendor/bin/phpcs --ignore-annotations --standard=PSR12 src tests && vendor/bin/phpcf tests src",
         "security": "vendor/bin/security-checker security:check",

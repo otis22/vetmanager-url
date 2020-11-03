@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Otis22\VetmanagerApi\Url;
+namespace Otis22\VetmanagerUrl\Url;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Otis22\VetmanagerApi\VetmanagerApiException;
 use PHPUnit\Framework\TestCase;
-use Otis22\VetmanagerApi\Url\Part\Domain;
+use Otis22\VetmanagerUrl\Url\Part\Domain;
 
 final class FromBillingApiGatewayTest extends TestCase
 {
@@ -73,7 +72,7 @@ final class FromBillingApiGatewayTest extends TestCase
     }
     public function testHostNameWithServerError(): void
     {
-        $this->expectException(VetmanagerApiException::class);
+        $this->expectException(\Exception::class);
         $mock = new MockHandler(
             [
             new Response(
@@ -93,7 +92,7 @@ final class FromBillingApiGatewayTest extends TestCase
     }
     public function testHostNameWithUnsuccess(): void
     {
-        $this->expectException(VetmanagerApiException::class);
+        $this->expectException(\Exception::class);
         $mock = new MockHandler(
             [
             new Response(
@@ -114,7 +113,7 @@ final class FromBillingApiGatewayTest extends TestCase
 
     public function testHostNameWithEmptyUrl(): void
     {
-        $this->expectException(VetmanagerApiException::class);
+        $this->expectException(\Exception::class);
         $mock = new MockHandler(
             [
             new Response(

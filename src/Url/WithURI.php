@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Otis22\VetmanagerApi\Url;
+namespace Otis22\VetmanagerUrl\Url;
 
-use Otis22\VetmanagerUrl\Api\HTTP\URI;
 use Otis22\VetmanagerUrl\Url;
 
 final class WithURI implements Url
@@ -14,16 +13,16 @@ final class WithURI implements Url
      */
     private $url;
     /**
-     * @var URI
+     * @var string
      */
     private $uri;
 
     /**
      * UrlWithURI constructor.
      * @param Url $url
-     * @param URI $uri
+     * @param string $uri
      */
-    public function __construct(Url $url, URI $uri)
+    public function __construct(Url $url, string $uri)
     {
         $this->url = $url;
         $this->uri = $uri;
