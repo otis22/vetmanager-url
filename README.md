@@ -5,7 +5,6 @@ Vetmanager - CRM for veterinary. All vetmanager clients has access to their crm 
 Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmanager.ru, but it url format will be change.
 
 ![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/otis22/vetmanager-url/badge.svg?branch=master)](https://coveralls.io/github/otis22/php-skelleton?branch=master)
 
 [Vetmanager Docs](https://vetmanager.ru/knowledgebase/rest-api-osnovnaya-informatsia)
 
