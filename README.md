@@ -8,6 +8,9 @@ Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmana
 [![Coverage Status](https://coveralls.io/repos/github/otis22/vetmanager-url/badge.svg?branch=master)](https://coveralls.io/github/otis22/php-skelleton?branch=master)
 
 [Vetmanager Docs](https://vetmanager.ru/knowledgebase/rest-api-osnovnaya-informatsia)
+
+[Vetmanager REST API in Postman](https://god.postman.co/run-collection/64d692ca1ea129218ccb)
+
 # How to use 
 ## Install
 ```
