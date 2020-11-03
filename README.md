@@ -7,26 +7,26 @@ Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmana
 ![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/otis22/vetmanager-url/badge.svg?branch=master)](https://coveralls.io/github/otis22/php-skelleton?branch=master)
 
+[Vetmanager Docs](https://vetmanager.ru/knowledgebase/rest-api-osnovnaya-informatsia)
 # How to use 
 ## Install
 ```
-composer require otis/vetmanager-url
+composer require otis22/vetmanager-url
 ```
-
-## Basic usage Url
-
+## Examples
 ```
 use function Otis22\VetmanagerUrl\url;
 
+/*
+    return Url object, which can be convert to string
+    with full url address https://$domain.vetmanager.ru
+*/
 echo url('myclinic') . "\n";
 ```
-
-Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru
-
+Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru and "vetmanager.ru" is a variable
 
 ## For contributors
 ### Local work
-
 ```
 cd docker
 docker-compose up
@@ -35,9 +35,7 @@ now you can connect to terminal
 ```
 docker exec -it vetmanager-url /bin/bash
 ```
-
 ### Run tests
-
 ```
 #run all
 composer check-all
