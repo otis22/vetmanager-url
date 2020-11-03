@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c145f5702a489b5d55670957d2a4b048",
-    "packages": [],
+    "content-hash": "7bb6c935a00009f4602f54996d8e31fe",
+    "packages": [
+        {
+            "name": "otis/php-interfaces",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/php-interfaces.git",
+                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/php-interfaces/zipball/abad644c04c250b4d5cac8eab9af8e82d6d31e58",
+                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58",
+                "shasum": ""
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpstan/phpstan": "^0.12.19",
+                "sensiolabs/security-checker": "^6.0",
+                "squizlabs/php_codesniffer": "3.*",
+                "wapmorgan/php-code-fixer": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Otis22\\PhpInterfaces\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir ROmanichev",
+                    "email": "pro100print@yahoo.com"
+                }
+            ],
+            "description": "Interfaces for OOP php projects",
+            "time": "2020-11-02T15:33:32+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
