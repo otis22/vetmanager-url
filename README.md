@@ -1,12 +1,13 @@
+![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)
+
 # Vetmanager Url
 
 Vetmanager - CRM for veterinary. All vetmanager clients has access to their crm via URL. Now Vetmanager is changing server architecure and URL can changes. This project for getting full URL by only first part. Use this library avoid hardcode.
 
 Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmanager.ru, but it url format will be change.
 
-![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)
 
-[Vetmanager Docs](https://vetmanager.ru/knowledgebase/rest-api-osnovnaya-informatsia)
+[Vetmanager REST API Docs](https://vetmanager.ru/knowledgebase/rest-api-osnovnaya-informatsia)
 
 [Vetmanager REST API in Postman](https://god.postman.co/run-collection/64d692ca1ea129218ccb)
 
