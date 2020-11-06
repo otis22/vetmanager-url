@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a44ff0c32c9c6c631affbf13d24c0e8f",
+    "content-hash": "e69ea43ff660f990e0310e7d0539bcb7",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -196,17 +196,17 @@
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
-            "name": "otis/php-interfaces",
-            "version": "0.1",
+            "name": "otis22/php-interfaces",
+            "version": "0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/otis22/php-interfaces.git",
-                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58"
+                "reference": "1f0c7a6e96bd104fb095d2fa727a4e05569aac0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/otis22/php-interfaces/zipball/abad644c04c250b4d5cac8eab9af8e82d6d31e58",
-                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58",
+                "url": "https://api.github.com/repos/otis22/php-interfaces/zipball/1f0c7a6e96bd104fb095d2fa727a4e05569aac0b",
+                "reference": "1f0c7a6e96bd104fb095d2fa727a4e05569aac0b",
                 "shasum": ""
             },
             "require-dev": {
@@ -233,7 +233,7 @@
                 }
             ],
             "description": "Interfaces for OOP php projects",
-            "time": "2020-11-02T15:33:32+00:00"
+            "time": "2020-11-06T14:44:34+00:00"
         },
         {
             "name": "psr/http-message",
@@ -740,6 +740,46 @@
                 "php"
             ],
             "time": "2020-09-26T10:30:38+00:00"
+        },
+        {
+            "name": "otis/php-interfaces",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/php-interfaces.git",
+                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/php-interfaces/zipball/abad644c04c250b4d5cac8eab9af8e82d6d31e58",
+                "reference": "abad644c04c250b4d5cac8eab9af8e82d6d31e58",
+                "shasum": ""
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpstan/phpstan": "^0.12.19",
+                "sensiolabs/security-checker": "^6.0",
+                "squizlabs/php_codesniffer": "3.*",
+                "wapmorgan/php-code-fixer": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Otis22\\PhpInterfaces\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir ROmanichev",
+                    "email": "pro100print@yahoo.com"
+                }
+            ],
+            "description": "Interfaces for OOP php projects",
+            "time": "2020-11-02T15:33:32+00:00"
         },
         {
             "name": "otis22/php-coverage-checker",
