@@ -29,12 +29,4 @@ final class Concrete implements Url
     {
         return $this->url;
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString(): string
-    {
-        return $this->asString();
-    }
 }

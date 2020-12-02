@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Otis22\VetmanagerUrl\Url\Part;
 
-final class Protocol
+use ElegantBro\Interfaces\Stringify;
+use Exception;
+
+final class Protocol implements Stringify
 {
     /**
      * @var string
@@ -21,7 +24,7 @@ final class Protocol
         $this->protocol = $protocol;
     }
 
-    public function __toString(): string
+    public function asString(): string
     {
         return $this->protocol . "://";
     }

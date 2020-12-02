@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Otis22\VetmanagerUrl\Url\Part;
 
-final class Domain
+use ElegantBro\Interfaces\Stringify;
+
+final class Domain implements Stringify
 {
     /**
      * @var string
@@ -21,7 +23,7 @@ final class Domain
         $this->domain = $domain;
     }
 
-    public function __toString(): string
+    public function asString(): string
     {
         return $this->domain;
     }

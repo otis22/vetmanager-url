@@ -11,7 +11,7 @@
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "ext-json": "*",
-        "otis22/php-interfaces": "^0.3.0"
+        "elegant-bro/interfaces": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1",

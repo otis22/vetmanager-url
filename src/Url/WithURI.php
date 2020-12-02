@@ -33,14 +33,7 @@ final class WithURI implements Url
      */
     public function asString(): string
     {
-        return $this->url . $this->uri;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString(): string
-    {
-        return $this->asString();
+        return $this->url->asString()
+            . $this->uri;
     }
 }

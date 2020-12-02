@@ -10,9 +10,7 @@ class ProtocolTest extends TestCase
     {
         $this->assertEquals(
             "http://",
-            strval(
-                new Protocol("http")
-            )
+            (new Protocol("http"))->asString()
         );
     }
 }

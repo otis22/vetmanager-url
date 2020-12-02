@@ -50,12 +50,6 @@ final class FromBillingApiGateway implements Url
         return $this->url;
     }
 
-    public function __toString(): string
-    {
-        return $this->asString();
-    }
-
-
     private function urlFromApi(): string
     {
         try {
@@ -66,7 +60,8 @@ final class FromBillingApiGateway implements Url
                 throw new \Exception("Invalid json response: {$responseText}");
             }
             $this->validateResponse($json);
-            return $this->protocol($json) . $this->hostName($json);
+            return $this->protocol($json)->asString()
+                . $this->hostName($json);
         } catch (\Throwable $e) {
             throw new \Exception($e->getMessage(), $e->getCode(), $e);
         }
@@ -74,7 +69,8 @@ final class FromBillingApiGateway implements Url
 
     private function hostGatewayUrl(): string
     {
-        return $this->billingApiUrl . "/host/" . $this->domain;
+        return $this->billingApiUrl->asString()
+            . "/host/" . $this->domain->asString();
     }
 
     /**

@@ -33,13 +33,13 @@ final class FromBillingApiGatewayTest extends TestCase
 
         $this->assertEquals(
             "http://test.fake.url",
-            strval(
+            (
                 new FromBillingApiGateway(
                     new BillingApi("https://fake.billing.url"),
                     new Domain('one'),
                     new Client(['handler' => $handlerStack])
                 )
-            )
+            )->asString()
         );
     }
 
@@ -66,8 +66,8 @@ final class FromBillingApiGatewayTest extends TestCase
             new Client(['handler' => $handlerStack])
         );
         $this->assertEquals(
-            strval($hostName),
-            strval($hostName)
+            $hostName->asString(),
+            $hostName->asString()
         );
     }
     public function testHostNameWithServerError(): void

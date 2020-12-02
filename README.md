@@ -13,7 +13,7 @@ Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmana
 [Vetmanager REST API in Postman](https://god.postman.co/run-collection/64d692ca1ea129218ccb)
 
 # How to use 
-## Install
+## Installation
 ```
 composer require otis22/vetmanager-url
 ```
@@ -25,7 +25,7 @@ use function Otis22\VetmanagerUrl\url;
     return Url object, which can be convert to string
     with full url address https://$domain.vetmanager.ru
 */
-echo url('myclinic') . "\n";
+echo url('myclinic')->asString();
 ```
 Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru and "vetmanager.ru" is a variable
 

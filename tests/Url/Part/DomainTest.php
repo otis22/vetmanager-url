@@ -12,9 +12,7 @@ class DomainTest extends TestCase
     {
         $this->assertEquals(
             "test",
-            strval(
-                new Domain("test")
-            )
+            (new Domain("test"))->asString()
         );
     }
 }

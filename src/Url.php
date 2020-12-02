@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Otis22\VetmanagerUrl;
 
-use Otis22\PhpInterfaces\Stringify;
+use ElegantBro\Interfaces\Stringify;
 
 interface Url extends Stringify
 {

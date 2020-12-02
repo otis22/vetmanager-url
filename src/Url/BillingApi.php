@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Otis22\VetmanagerUrl\Url;
 
-final class BillingApi
+use ElegantBro\Interfaces\Stringify;
+
+final class BillingApi implements Stringify
 {
     /**
      * @var string
@@ -21,7 +23,7 @@ final class BillingApi
         $this->billingApiUrl = $billingApiUrl;
     }
 
-    public function __toString(): string
+    public function asString(): string
     {
         return $this->billingApiUrl;
     }
