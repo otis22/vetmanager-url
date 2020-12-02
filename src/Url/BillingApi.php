@@ -23,6 +23,9 @@ final class BillingApi implements Stringify
         $this->billingApiUrl = $billingApiUrl;
     }
 
+    /**
+     * @return string
+     */
     public function asString(): string
     {
         return $this->billingApiUrl;

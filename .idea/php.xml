@@ -73,7 +73,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
-      <path value="$PROJECT_DIR$/vendor/otis22/php-interfaces" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpcov" />
       <path value="$PROJECT_DIR$/vendor/elegant-bro/interfaces" />
     </include_path>

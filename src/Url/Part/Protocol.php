@@ -24,6 +24,9 @@ final class Protocol implements Stringify
         $this->protocol = $protocol;
     }
 
+    /**
+     * @return string
+     */
     public function asString(): string
     {
         return $this->protocol . "://";

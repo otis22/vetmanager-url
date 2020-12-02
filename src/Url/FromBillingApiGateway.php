@@ -42,6 +42,10 @@ final class FromBillingApiGateway implements Url
         $this->client = $client;
     }
 
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function asString(): string
     {
         if (empty($this->url)) {

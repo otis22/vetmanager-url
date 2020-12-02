@@ -23,6 +23,9 @@ final class Domain implements Stringify
         $this->domain = $domain;
     }
 
+    /**
+     * @return string
+     */
     public function asString(): string
     {
         return $this->domain;

@@ -18,7 +18,7 @@ Now url address has format $domain.vetmanager.ru for example: myclinic76.vetmana
 composer require otis22/vetmanager-url
 ```
 ## Examples
-```
+```php
 use function Otis22\VetmanagerUrl\url;
 
 /*
