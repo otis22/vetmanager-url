@@ -29,30 +29,41 @@ echo url('myclinic')->asString();
 ```
 Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru and "vetmanager.ru" is a variable
 
-## For contributors
-### Local work
-```
-cd docker
-docker-compose up
-```
-now you can connect to terminal
-```
-docker exec -it vetmanager-url /bin/bash
-```
-### Run tests
-```
-#run all
-composer check-all
+## Contributing
 
-#security check
-composer security
+For run all tests
+```shell
+make all
+```
+or connect to terminal
+```shell
+make exec
+```
+*Dafault php version is 7.4*. Use PHP_VERSION= for using custom version.
+```shell
+make all PHP_VERSION=8.0
+# run both 
+make all PHP_VERSION=7.4 && make all PHP_VERSION=8.0
+```
 
-#check code style
-composer check-style
+*For integration tests copy .env.example to .env and fill with yours values*
 
-#analyze code
-composer check-static-analyze
-
-#run unit tests
-composer unit
+all commands
+```shell
+# security check
+make security
+# composer install
+make install
+# composer install with --no-dev
+make install-no-dev
+# check code style
+make style
+# run static analyze tools
+make static-analyze
+# run unit tests
+make unit
+#  check coverage
+make coverage
+# check integration, .env required
+make integration
 ```
