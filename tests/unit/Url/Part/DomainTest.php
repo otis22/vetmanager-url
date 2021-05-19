@@ -11,12 +11,28 @@ class DomainTest extends TestCase
     public function testSimpleDomainToString(): void
     {
         $this->assertEquals(
-            "test",
-            (new Domain("test"))->asString()
+            "myclinic",
+            (new Domain("Myclinic"))->asString()
         );
     }
 
-    public function testDomainFromHttpUrlToString(): void
+    public function testSimpleDomainToString2(): void
+    {
+        $this->assertEquals(
+            "myclinic",
+            (new Domain("MyclInic"))->asString()
+        );
+    }
+
+    public function testSimpleDomainToString3(): void
+    {
+        $this->assertEquals(
+            "myclinic",
+            (new Domain("MycliniC"))->asString()
+        );
+    }
+
+    /*public function testDomainFromHttpUrlToString(): void
     {
         $this->assertEquals(
             "test",
@@ -44,7 +60,7 @@ class DomainTest extends TestCase
                 new Domain("test.vetmanager.ru")
             )->asString()
         );
-    }
+    }*/
 
     public function testInvalidUrlThrowExceptionToString(): void
     {

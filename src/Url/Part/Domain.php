@@ -29,7 +29,7 @@ final class Domain implements Stringify
     {
         return $this->isUrl()
             ? $this->domainFromHost($this->hostFromUrl())
-            : $this->domainFromHost($this->urlDomainOrHostName);
+            : $this->domainFromHost(strtolower($this->urlDomainOrHostName));
     }
 
     /**
