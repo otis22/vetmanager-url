@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class DomainTest extends TestCase
 {
+
     public function testSimpleDomainToString(): void
     {
         $this->assertEquals(
@@ -20,7 +21,7 @@ class DomainTest extends TestCase
     {
         $this->assertEquals(
             "myclinic",
-            (new Domain("MyclInic"))->asString()
+            (new Domain("MyclIniC"))->asString()
         );
     }
 
@@ -28,16 +29,16 @@ class DomainTest extends TestCase
     {
         $this->assertEquals(
             "myclinic",
-            (new Domain("MycliniC"))->asString()
+            (new Domain("MYCLINIC"))->asString()
         );
     }
 
-    /*public function testDomainFromHttpUrlToString(): void
+    public function testDomainFromHttpUrlToString(): void
     {
         $this->assertEquals(
-            "test",
+            "myclinic",
             (
-                new Domain("http://test.vetmanager.ru")
+                new Domain("http://myclinic.vetmanager.ru")
             )->asString()
         );
     }
@@ -45,9 +46,9 @@ class DomainTest extends TestCase
     public function testDomainFromHttpsUrlToString(): void
     {
         $this->assertEquals(
-            "test",
+            "myclinic",
             (
-                new Domain("https://test.vetmanager.ru")
+                new Domain("https://myclinic.vetmanager.ru")
             )->asString()
         );
     }
@@ -55,12 +56,12 @@ class DomainTest extends TestCase
     public function testDomainFromHostNameToString(): void
     {
         $this->assertEquals(
-            "test",
+            "myclinic",
             (
-                new Domain("test.vetmanager.ru")
+                new Domain("myclinic.vetmanager.ru")
             )->asString()
         );
-    }*/
+    }
 
     public function testInvalidUrlThrowExceptionToString(): void
     {
