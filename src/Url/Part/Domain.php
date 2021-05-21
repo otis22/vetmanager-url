@@ -60,6 +60,6 @@ final class Domain implements Stringify
     private function domainFromHost(string $host): string
     {
         $exploded = explode('.', $host);
-        return $exploded[0];
+        return strtolower($exploded[0]);
     }
 }
