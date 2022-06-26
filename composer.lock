@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45d50994e36ee91380783bca0ced0ec4",
+    "content-hash": "3913ffd18e16cf3c0563b24062bcaeed",
     "packages": [
         {
             "name": "elegant-bro/interfaces",
@@ -4249,6 +4249,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "^7.4 | ^8.0",
         "ext-json": "*"
     },
     "platform-dev": [],
