@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class WithURITest extends TestCase
 {
-
     public function testAsString(): void
     {
         $this->assertEquals(

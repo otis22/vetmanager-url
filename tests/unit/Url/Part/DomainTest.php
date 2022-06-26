@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class DomainTest extends TestCase
 {
-
     public function testSimpleDomainToString(): void
     {
         $this->assertEquals(

@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class ConcreteTest extends TestCase
 {
-
     public function testAsString(): void
     {
         $this->assertEquals(
