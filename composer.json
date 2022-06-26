@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.3 | ^8.0",
+        "php": "^7.4 | ^8.0",
         "guzzlehttp/guzzle": "^7.1",
         "ext-json": "*",
         "elegant-bro/interfaces": "^1.1"
