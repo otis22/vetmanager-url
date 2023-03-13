@@ -40,7 +40,10 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
         $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
         $jsonText = @file_get_contents($billingUrl);
         if ($jsonText === false) {
-            throw new \Exception('Can`t create FromJson object. Invalid server response.');
+            $error = error_get_last();
+            throw new \Exception(
+                'Can`t create FromJson object. Invalid server response. Error: ' . $error
+            );
         }
         return new self($jsonText);
     }
