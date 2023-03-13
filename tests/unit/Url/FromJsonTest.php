@@ -66,4 +66,13 @@ final class FromJsonTest extends TestCase
         );
         $url->asString();
     }
+
+    public function testFromDomainAndBillingApi(): void
+    {
+        $this->expectException(\Exception::class);
+        FromJson::fromDomainAndBillingApi(
+            new Domain('test'),
+            new BillingApi('test')
+        );
+    }
 }
