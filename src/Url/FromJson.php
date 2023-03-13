@@ -38,9 +38,11 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
     public static function fromDomainAndBillingApi(Domain $domain, BillingApi $billingApi): self
     {
         $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
-        new self(
-            file_get_contents($billingUrl)
-        );
+        $jsonText = file_get_contents($billingUrl);
+        if ($jsonText === false) {
+            throw new \Exception('Can`t create FromJson object. Invalid server response.');
+        }
+        return new self($jsonText);
     }
 
     private function validateResponse(\stdClass $json): void
