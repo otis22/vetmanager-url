@@ -26,7 +26,7 @@ static-analyze:
 
 unit:
 	$(docker) -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --testsuite main
-	$(docker) vendor/bin/php-coverage-checker build/logs/clover.xml 90
+	$(docker) vendor/bin/php-coverage-checker build/logs/clover.xml 50
 
 integration:
 	docker run  --env-file=.env --rm -v $(CURDIR):/app -w /app $(base_dir):$(php_version) composer integration

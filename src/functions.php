@@ -9,10 +9,9 @@ use Otis22\VetmanagerUrl\Url\Part\Domain;
 
 function create_url_from_billing_api_gateway(string $domainName, string $billingApiUrl): Url
 {
-    return new Url\FromBillingApiGateway(
-        new Url\BillingApi($billingApiUrl),
+    return Url\FromJson::fromDomainAndBillingApi(
         new Domain($domainName),
-        new Client()
+        new Url\BillingApi($billingApiUrl)
     );
 }
 
