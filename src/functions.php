@@ -17,7 +17,19 @@ function create_url_from_billing_api_gateway(string $domainName, string $billing
 
 function url(string $domainName): Url
 {
-    return create_url_from_billing_api_gateway($domainName, "https://billing-api.vetmanager.cloud");
+    /** @var array<string, Url> $cache */
+    static $cache = [];
+
+    if (isset($cache[$domainName])) {
+        return $cache[$domainName];
+    }
+
+    $cache[$domainName] = create_url_from_billing_api_gateway(
+        $domainName,
+        "https://billing-api.vetmanager.cloud"
+    );
+
+    return $cache[$domainName];
 }
 
 function url_test_env(string $domainName): Url
