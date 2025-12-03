@@ -17,7 +17,7 @@ final class FromJsonTest extends TestCase
                 new FromJson(
                     '{
                     "protocol":"http",
-                    "host":"test.kube-dev.vetmanager.cloud",
+                    "host":"test.kube-dev.vetmanager.ru",
                     "url":"test.fake.url",
                     "success":true
                 }'
@@ -31,7 +31,7 @@ final class FromJsonTest extends TestCase
         $hostName = new FromJson(
             '{
                     "protocol":"http",
-                    "host":"test.kube-dev.vetmanager.cloud",
+                    "host":"test.kube-dev.vetmanager.ru",
                     "url":"test.fake.url",
                     "success":true
                 }'

@@ -17,10 +17,10 @@ function create_url_from_billing_api_gateway(string $domainName, string $billing
 
 function url(string $domainName): Url
 {
-    return create_url_from_billing_api_gateway($domainName, "https://billing-api.vetmanager.cloud");
+    return create_url_from_billing_api_gateway($domainName, "https://billing-api.vetmanager.ru");
 }
 
 function url_test_env(string $domainName): Url
 {
-    return create_url_from_billing_api_gateway($domainName, "https://billing-api-test.kube-dev.vetmanager.cloud/");
+    return create_url_from_billing_api_gateway($domainName, "https://billing-api-test.kube-dev.vetmanager.ru/");
 }
