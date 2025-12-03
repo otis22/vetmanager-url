@@ -26,7 +26,7 @@ function url(string $domainName): Url
 
     $cache[$domainName] = create_url_from_billing_api_gateway(
         $domainName,
-        "https://billing-api.vetmanager.cloud"
+        "https://billing-api.vetmanager.ru"
     );
 
     return $cache[$domainName];
