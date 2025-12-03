@@ -1,4 +1,4 @@
-![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)
+[![GitHub CI](https://github.com/otis22/vetmanager-url/workflows/CI/badge.svg)](https://github.com/otis22/vetmanager-url/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage Status](https://coveralls.io/repos/github/otis22/vetmanager-url/badge.svg?branch=main)](https://coveralls.io/github/otis22/vetmanager-url?branch=main)
 
 # Vetmanager Url
