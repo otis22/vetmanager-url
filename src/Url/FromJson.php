@@ -8,6 +8,8 @@ use Otis22\VetmanagerUrl\Url\Part\Protocol;
 class FromJson implements \Otis22\VetmanagerUrl\Url
 {
     private string $jsonText;
+    /** @var array<string, string> */
+    private static array $responsesCache = [];
 
     /**
      * @param string $jsonText
@@ -37,7 +39,11 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
 
     public static function fromDomainAndBillingApi(Domain $domain, BillingApi $billingApi): self
     {
-        $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
+        $domainKey = $domain->asString();
+        if (isset(self::$responsesCache[$domainKey])) {
+            return new self(self::$responsesCache[$domainKey]);
+        }
+        $billingUrl = $billingApi->asString() . "/host/" . $domainKey;
         $jsonText = @file_get_contents($billingUrl);
         if ($jsonText === false) {
             $error = error_get_last() ?? ['message' => 'undefined error'];
@@ -46,6 +52,7 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
                 . $error['message']
             );
         }
+        self::$responsesCache[$domainKey] = $jsonText;
         return new self($jsonText);
     }
 
