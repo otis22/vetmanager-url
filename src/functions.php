@@ -22,5 +22,5 @@ function url(string $domainName): Url
 
 function url_test_env(string $domainName): Url
 {
-    return create_url_from_billing_api_gateway($domainName, "https://billing-api-test.kube-dev.vetmanager.ru/");
+    return create_url_from_billing_api_gateway($domainName, "https://billing-api-test.kube-dev.vetmanager.cloud/");
 }
