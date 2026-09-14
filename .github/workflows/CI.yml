@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         php-versions: ['7.4', '8.0', '8.1']
+        guzzle-versions: ['^6.5', '^7.0']
     steps:
       - uses: actions/checkout@v1
       - uses: shivammathur/setup-php@v2
@@ -22,7 +23,9 @@ jobs:
           composer validate
       - name: Install dependency
         run: |
+          composer require --dev "guzzlehttp/guzzle:${{ matrix.guzzle-versions }}" --no-update
           composer install
+          composer show guzzlehttp/guzzle
       - name: Check code standart
         run: |
           composer check-style
@@ -32,6 +35,7 @@ jobs:
       - name: Run tests
         run: |
           composer unit
+          vendor/bin/phpunit --testsuite main --order-by=random --random-order-seed=42 --no-coverage
       - name: Upload coverage results to Coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,3 +47,21 @@ jobs:
           TEST_DOMAIN_NAME: ${{ secrets.TEST_DOMAIN_NAME }}
         run: |
           composer integration
+
+  without-guzzle:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.4', '8.1']
+    steps:
+      - uses: actions/checkout@v1
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, gd, zip
+          coverage: none
+          tools: composer
+      - name: Install without development dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist
+      - name: Verify legacy API without Guzzle
+        run: php tests/no-guzzle.php

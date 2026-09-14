@@ -2,6 +2,7 @@
 
 namespace Otis22\VetmanagerUrl\Url;
 
+use GuzzleHttp\ClientInterface;
 use Otis22\VetmanagerUrl\Url\Part\Domain;
 use Otis22\VetmanagerUrl\Url\Part\Protocol;
 
@@ -35,9 +36,19 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
         }
     }
 
-    public static function fromDomainAndBillingApi(Domain $domain, BillingApi $billingApi): self
-    {
-        $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
+    public static function fromDomainAndBillingApi(
+        Domain $domain,
+        BillingApi $billingApi,
+        ?ClientInterface $client = null
+    ): self {
+        $billingUrl = rtrim($billingApi->asString(), "/") . "/host/" . $domain->asString();
+        if ($client !== null) {
+            $response = $client->request("GET", $billingUrl);
+            if ($response->getStatusCode() >= 400) {
+                throw new \Exception("Billing API HTTP error: " . $response->getStatusCode());
+            }
+            return new self((string) $response->getBody());
+        }
         $jsonText = @file_get_contents($billingUrl);
         if ($jsonText === false) {
             $error = error_get_last() ?? ['message' => 'undefined error'];
