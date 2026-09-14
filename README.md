@@ -61,16 +61,12 @@ echo create_url_from_billing_api_gateway(
 )->asString();
 ```
 
-The client is also accepted as the third argument of
-`Url\FromJson::fromDomainAndBillingApi($domain, $billingApi, $client)`.
-All previously required arguments and return types remain unchanged. Passing
-`null` is equivalent to omitting the client.
-
-Compatibility note for subclasses: if you override
-`FromJson::fromDomainAndBillingApi()`, add the optional
-`?GuzzleHttp\ClientInterface $client = null` parameter to that override as well.
-An override with the old two-parameter signature is incompatible with the new
-parent signature. Existing function calls do not need this change.
+For direct factory use, the new method is
+`Url\FromJson::fromDomainAndBillingApiUsingClient($domain, $billingApi, $client)`.
+The existing `FromJson::fromDomainAndBillingApi($domain, $billingApi)` method keeps
+its original two-parameter signature and stream transport, including compatibility
+with subclasses overriding it. All existing calls remain supported. Passing `null`
+to the optional client argument of the helper functions uses the original path.
 
 The library sends `GET /host/<domain>` through the supplied client. It does not
 replace its headers, timeouts, proxy or middleware configuration. The library
@@ -85,9 +81,8 @@ a request, even for the same domain and client. This prevents an earlier lookup
 from hiding a request made with another client's configuration. Keep the returned
 `Url` object if you want to reuse the result; repeated `asString()` calls do not
 send additional requests. `url_test_env()` and the custom-gateway factory remain
-uncached. Gateway URLs with a trailing slash are accepted without generating a
-double slash before `/host/`. This normalization also applies to existing
-calls without a client; previously they could send `//host/`.
+uncached. The new client-based factory normalizes trailing gateway slashes.
+The original stream-based factory preserves its existing URL construction.
 
 When another library calls these helpers, it must accept and forward the client
 from the application. Use a client configured for billing URL discovery, separate

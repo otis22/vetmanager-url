@@ -36,19 +36,9 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
         }
     }
 
-    public static function fromDomainAndBillingApi(
-        Domain $domain,
-        BillingApi $billingApi,
-        ?ClientInterface $client = null
-    ): self {
-        $billingUrl = rtrim($billingApi->asString(), "/") . "/host/" . $domain->asString();
-        if ($client !== null) {
-            $response = $client->request("GET", $billingUrl);
-            if ($response->getStatusCode() >= 400) {
-                throw new \Exception("Billing API HTTP error: " . $response->getStatusCode());
-            }
-            return new self((string) $response->getBody());
-        }
+    public static function fromDomainAndBillingApi(Domain $domain, BillingApi $billingApi): self
+    {
+        $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
         $jsonText = @file_get_contents($billingUrl);
         if ($jsonText === false) {
             $error = error_get_last() ?? ['message' => 'undefined error'];
@@ -58,6 +48,19 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
             );
         }
         return new self($jsonText);
+    }
+
+    public static function fromDomainAndBillingApiUsingClient(
+        Domain $domain,
+        BillingApi $billingApi,
+        ClientInterface $client
+    ): self {
+        $billingUrl = rtrim($billingApi->asString(), "/") . "/host/" . $domain->asString();
+        $response = $client->request("GET", $billingUrl);
+        if ($response->getStatusCode() >= 400) {
+            throw new \Exception("Billing API HTTP error: " . $response->getStatusCode());
+        }
+        return new self((string) $response->getBody());
     }
 
     private function validateResponse(\stdClass $json): void

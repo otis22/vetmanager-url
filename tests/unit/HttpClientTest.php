@@ -52,7 +52,7 @@ final class HttpClientTest extends TestCase
         } elseif ($entryPoint === 'custom') {
             $result = create_url_from_billing_api_gateway('Clinic', 'https://billing.example/prefix/', $client);
         } else {
-            $result = FromJson::fromDomainAndBillingApi(
+            $result = FromJson::fromDomainAndBillingApiUsingClient(
                 new Domain('Clinic'),
                 new BillingApi('https://billing.example/prefix/'),
                 $client

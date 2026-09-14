@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/Url/LegacyFromJson.php';
 
 if (interface_exists(\GuzzleHttp\ClientInterface::class)) {
     throw new RuntimeException('This smoke test requires an installation without Guzzle.');
@@ -25,6 +26,10 @@ try {
             new \Otis22\VetmanagerUrl\Url\BillingApi($gateway)
         ),
     ];
+    $urls[] = \Otis22\VetmanagerUrl\Url\LegacyFromJson::fromDomainAndBillingApi(
+        new \Otis22\VetmanagerUrl\Url\Part\Domain('clinic'),
+        new \Otis22\VetmanagerUrl\Url\BillingApi($gateway)
+    );
     foreach ($urls as $url) {
         if ($url->asString() !== 'https://clinic.example') {
             throw new RuntimeException('Legacy URL discovery returned an unexpected result.');
