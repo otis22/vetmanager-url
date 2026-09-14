@@ -29,7 +29,76 @@ echo url('myclinic')->asString();
 ```
 Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru and "vetmanager.ru" is a variable
 
+## Optional HTTP client
+
+Existing calls such as `url('myclinic')` continue to use PHP streams and do not
+require Guzzle. To configure outgoing requests, install Guzzle 6.5 or 7:
+
+```shell
+composer require guzzlehttp/guzzle
+```
+
+Pass a `GuzzleHttp\ClientInterface` implementation as the optional client:
+
+```php
+use GuzzleHttp\Client;
+use function Otis22\VetmanagerUrl\url;
+use function Otis22\VetmanagerUrl\url_test_env;
+use function Otis22\VetmanagerUrl\create_url_from_billing_api_gateway;
+
+$client = new Client([
+    'headers' => ['User-Agent' => 'my-project/1.2.3'],
+    'connect_timeout' => 3,
+    'timeout' => 10,
+]);
+
+echo url('myclinic', $client)->asString();
+echo url_test_env('myclinic', $client)->asString();
+echo create_url_from_billing_api_gateway(
+    'myclinic',
+    'https://billing-api.example',
+    $client
+)->asString();
+```
+
+The client is also accepted as the third argument of
+`Url\FromJson::fromDomainAndBillingApi($domain, $billingApi, $client)`.
+All previously required arguments and return types remain unchanged. Passing
+`null` is equivalent to omitting the client.
+
+Compatibility note for subclasses: if you override
+`FromJson::fromDomainAndBillingApi()`, add the optional
+`?GuzzleHttp\ClientInterface $client = null` parameter to that override as well.
+An override with the old two-parameter signature is incompatible with the new
+parent signature. Existing function calls do not need this change.
+
+The library sends `GET /host/<domain>` through the supplied client. It does not
+replace its headers, timeouts, proxy or middleware configuration. The library
+does not invent a project name or version; the calling application owns them.
+Transport exceptions propagate. HTTP responses with status 400 or higher are
+rejected even when the client sets `http_errors` to `false`. Existing JSON and
+billing-response validation still applies when `asString()` is called.
+
+`url()` without a client keeps its existing in-process cache by domain. Calls
+with an explicit client bypass that shared cache: each function call performs
+a request, even for the same domain and client. This prevents an earlier lookup
+from hiding a request made with another client's configuration. Keep the returned
+`Url` object if you want to reuse the result; repeated `asString()` calls do not
+send additional requests. `url_test_env()` and the custom-gateway factory remain
+uncached. Gateway URLs with a trailing slash are accepted without generating a
+double slash before `/host/`. This normalization also applies to existing
+calls without a client; previously they could send `//host/`.
+
+When another library calls these helpers, it must accept and forward the client
+from the application. Use a client configured for billing URL discovery, separate
+from the CRM client carrying clinic credentials. Installing this release alone
+does not add project headers to existing callers.
+
 ## Contributing
+
+The CI matrix tests the optional client with both Guzzle 6 and Guzzle 7.
+The minimum supported PHP version remains 7.4. CI also verifies a production
+installation without Guzzle and runs unit tests in a fixed shuffled order.
 
 For run all tests
 ```shell
