@@ -12,11 +12,12 @@ function create_url_from_billing_api_gateway(
     string $billingApiUrl,
     ?ClientInterface $client = null
 ): Url {
-    return Url\FromJson::fromDomainAndBillingApi(
-        new Domain($domainName),
-        new Url\BillingApi($billingApiUrl),
-        $client
-    );
+    $domain = new Domain($domainName);
+    $billingApi = new Url\BillingApi($billingApiUrl);
+    if ($client !== null) {
+        return Url\FromJson::fromDomainAndBillingApiUsingClient($domain, $billingApi, $client);
+    }
+    return Url\FromJson::fromDomainAndBillingApi($domain, $billingApi);
 }
 
 function url(string $domainName, ?ClientInterface $client = null): Url
