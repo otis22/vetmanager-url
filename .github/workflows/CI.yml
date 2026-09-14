@@ -6,9 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         php-versions: ['7.4', '8.0', '8.1']
-        guzzle-versions: ['^6.5', '^7.0']
+        guzzle-versions: ['6.5.8', '^7.0']
     steps:
       - uses: actions/checkout@v1
       - uses: shivammathur/setup-php@v2
@@ -17,10 +18,26 @@ jobs:
           extensions: mbstring, gd, zip
           ini-values: max_execution_time=600, memory_limit=-1
           coverage: xdebug
+          tools: composer:2.10
       - name: Validate composer.json
         run: |
           curl -sS https://getcomposer.org/installer | php -- --filename=composer
           composer validate
+      - name: Allow Guzzle 6 only for compatibility tests
+        if: matrix.guzzle-versions == '6.5.8'
+        run: |
+          composer config --json policy.advisories.ignore '{
+            "guzzlehttp/guzzle": {
+              "constraint": "6.5.8",
+              "on-audit": false,
+              "reason": "CI-only compatibility tests with mock HTTP handlers; no live requests."
+            },
+            "guzzlehttp/psr7": {
+              "constraint": "1.9.1",
+              "on-audit": false,
+              "reason": "Required by Guzzle 6.5.8 for mock-only compatibility tests."
+            }
+          }'
       - name: Install dependency
         run: |
           composer require --dev "guzzlehttp/guzzle:${{ matrix.guzzle-versions }}" --no-update
@@ -37,12 +54,14 @@ jobs:
           composer unit
           vendor/bin/phpunit --testsuite main --order-by=random --random-order-seed=42 --no-coverage
       - name: Upload coverage results to Coveralls
+        if: matrix.guzzle-versions != '6.5.8'
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer global require php-coveralls/php-coveralls
           php-coveralls --coverage_clover=build/logs/clover.xml -v
       - name: Run integration tests
+        if: matrix.guzzle-versions != '6.5.8'
         env:
           TEST_DOMAIN_NAME: ${{ secrets.TEST_DOMAIN_NAME }}
         run: |

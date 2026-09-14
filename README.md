@@ -97,6 +97,11 @@ does not add project headers to existing callers.
 ## Contributing
 
 The CI matrix tests the optional client with both Guzzle 6 and Guzzle 7.
+Guzzle 6.5.8 is tested only for legacy compatibility, using mock HTTP handlers.
+Known advisories for Guzzle 6.5.8 and its PSR-7 1.9.1 dependency are allowed only
+during dependency installation in those CI jobs and remain visible to audit. Live integration tests and coverage uploads
+run only with Guzzle 7. This CI exception does not apply to consumer installations;
+use a current Guzzle 7 release for new integrations.
 The minimum supported PHP version remains 7.4. CI also verifies a production
 installation without Guzzle and runs unit tests in a fixed shuffled order.
 
