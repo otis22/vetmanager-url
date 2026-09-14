@@ -65,6 +65,10 @@ jobs:
         env:
           TEST_DOMAIN_NAME: ${{ secrets.TEST_DOMAIN_NAME }}
         run: |
+          if [ -z "$TEST_DOMAIN_NAME" ]; then
+            echo "::notice::Skipping live integration tests: TEST_DOMAIN_NAME is not configured."
+            exit 0
+          fi
           composer integration
 
   without-guzzle:
