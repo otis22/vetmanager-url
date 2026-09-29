@@ -41,10 +41,13 @@ class FromJson implements \Otis22\VetmanagerUrl\Url
         $billingUrl = $billingApi->asString() . "/host/" . $domain->asString();
         $jsonText = @file_get_contents($billingUrl);
         if ($jsonText === false) {
-            $error = error_get_last() ?? ['message' => 'undefined error'];
+            $error = error_get_last()['message'] ?? '';
+            // error_get_last() may hold an earlier, unrelated error: an application error handler
+            // (e.g. Laravel) that handles "@" warnings keeps PHP from recording this request's one.
+            // PHP's warning for this request names it: "file_get_contents(<url>): ...".
             throw new \Exception(
                 'Can`t create FromJson object. Invalid server response. Error: '
-                . $error['message']
+                . (strpos($error, '(' . $billingUrl . ')') !== false ? $error : 'undefined error')
             );
         }
         return new self($jsonText);

@@ -29,6 +29,26 @@ echo url('myclinic')->asString();
 ```
 Where 'myclinic' is first part from your clinic url. $domain.vetmanager.ru and "vetmanager.ru" is a variable
 
+### Timeouts and errors without a client
+
+Without a client the request goes through PHP streams (`allow_url_fopen` must be
+enabled). The library does not set its own timeout: the wait is limited only by
+the `default_socket_timeout` ini setting (60 seconds by default), and the request
+runs when the factory is called. For an explicit limit pass an HTTP client with
+timeouts (see below).
+
+If the request fails, the exception message contains PHP's warning for the
+request, taken from `error_get_last()`, for example
+`... Error: file_get_contents(https://billing-api.vetmanager.ru/host/myclinic): Failed to open stream: HTTP request failed!`.
+When an application error handler (for example, Laravel's) handles the
+`@`-silenced warning, PHP does not record it and `error_get_last()` holds an
+earlier error. The library uses that message only if it names the request URL,
+otherwise the message reads `undefined error`, and the cause is unknown; pass
+an HTTP client to get the transport error. This is a heuristic: a warning left
+by an earlier failed request to the same URL is still reported if the current
+one was not recorded (for example, the handler changed between the requests).
+Error handlers and `error_get_last()` are not touched.
+
 ## Optional HTTP client
 
 Existing calls such as `url('myclinic')` continue to use PHP streams and do not
